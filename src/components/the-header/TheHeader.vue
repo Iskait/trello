@@ -1,0 +1,25 @@
+<script setup lang="ts">
+import TheLogo from "@/assets/logo.svg?component";
+import TheHeaderSecondary from "./TheHeaderSecondary.vue";
+
+const links = ["Workspaces", "Recent", "Starred", "Templates"];
+</script>
+
+<template>
+  <header class="bg-[#0336A1] border-b border-b-[#257AB1] flex flex-col">
+    <div class="flex gap-x-5 container py-2 items-center">
+      <TheLogo />
+      <ul class="flex gap-x-4">
+        <li
+          class="cursor-pointer hover:text-gray-400 transition-colors"
+          v-for="link in links"
+          :key="link"
+        >
+          {{ link }}
+        </li>
+      </ul>
+      <button class="button">Create</button>
+    </div>
+    <TheHeaderSecondary />
+  </header>
+</template>

@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import TheHeader from "./components/the-header/TheHeader.vue";
 </script>
 
 <template>
-  <div>
-    <h1 class="text-red-500 text-3xl">Зда</h1>
+  <div class="wrapper">
+    <TheHeader />
   </div>
 </template>

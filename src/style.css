@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #app {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-[#0779C0] text-white;
+  }
+}
+
+@layer components {
+  .wrapper {
+    @apply flex flex-col min-h-full overflow-hidden w-full;
+  }
+
+  .button {
+    @apply bg-[#3F84B8] hover:bg-[#0779C0] text-white p-2 transition-colors rounded-sm;
+  }
+}
