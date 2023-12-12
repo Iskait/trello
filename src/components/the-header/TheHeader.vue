@@ -3,6 +3,10 @@ import TheLogo from "@/assets/logo.svg?component";
 import TheHeaderSecondary from "./TheHeaderSecondary.vue";
 
 const links = ["Workspaces", "Recent", "Starred", "Templates"];
+
+const emits = defineEmits<{
+  "create-column": [];
+}>();
 </script>
 
 <template>
@@ -18,7 +22,7 @@ const links = ["Workspaces", "Recent", "Starred", "Templates"];
           {{ link }}
         </li>
       </ul>
-      <button class="button">Create</button>
+      <button class="button" @click="emits('create-column')">Create</button>
     </div>
     <TheHeaderSecondary />
   </header>
