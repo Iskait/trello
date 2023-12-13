@@ -8,16 +8,18 @@ const emits = defineEmits<{
   create: [string];
 }>();
 
-const columnTitle = ref("");
+const cardText = ref("");
 
-function createColumn() {
-  emits("create", columnTitle.value);
-  emits("close");
+function createCard() {
+  if (cardText.value) {
+    emits("create", cardText.value);
+    emits("close");
+  }
 }
 </script>
 
 <template>
-  <UiPopup @close="emits('close')">
+  <UiPopup @close="emits('close')" @on-enter-press="createCard">
     <div
       class="bg-[#f1f2f4] flex flex-col justify-between p-5 h-[500px] w-[580px] rounded-md"
     >
@@ -30,19 +32,26 @@ function createColumn() {
       </div>
       <div class="relative">
         <input
-          v-model="columnTitle"
+          v-model="cardText"
+          v-focus
           type="text"
           placeholder="Введите название карточки..."
         />
         <XMark
-          v-if="columnTitle"
+          v-if="cardText"
           class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors"
-          @click="columnTitle = ''"
+          @click="cardText = ''"
         />
       </div>
       <div class="flex gap-x-2 ml-auto">
         <button class="button danger" @click="emits('close')">Отменить</button>
-        <button class="button success" @click="createColumn">Сохранить</button>
+        <button
+          :disabled="!cardText"
+          class="button success"
+          @click="createCard"
+        >
+          Сохранить
+        </button>
       </div>
     </div>
   </UiPopup>

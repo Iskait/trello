@@ -11,13 +11,15 @@ const emits = defineEmits<{
 const columnTitle = ref("");
 
 function createColumn() {
-  emits("create", columnTitle.value);
-  emits("close");
+  if (columnTitle.value) {
+    emits("create", columnTitle.value);
+    emits("close");
+  }
 }
 </script>
 
 <template>
-  <UiPopup @close="emits('close')">
+  <UiPopup @close="emits('close')" @on-enter-press="createColumn">
     <div
       class="bg-[#f1f2f4] flex flex-col justify-between p-5 h-[500px] w-[580px] rounded-md"
     >
@@ -30,9 +32,10 @@ function createColumn() {
       </div>
       <div class="relative">
         <input
+          v-model="columnTitle"
+          v-focus
           type="text"
           placeholder="Введите название колонки..."
-          v-model="columnTitle"
         />
         <XMark
           v-if="columnTitle"
@@ -42,7 +45,13 @@ function createColumn() {
       </div>
       <div class="flex gap-x-2 ml-auto">
         <button class="button danger" @click="emits('close')">Отменить</button>
-        <button class="button success" @click="createColumn">Сохранить</button>
+        <button
+          :disabled="!columnTitle"
+          class="button success"
+          @click="createColumn"
+        >
+          Сохранить
+        </button>
       </div>
     </div>
   </UiPopup>

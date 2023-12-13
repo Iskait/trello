@@ -16,6 +16,10 @@
   input {
     @apply h-12 w-full rounded-xl border px-6 outline-none transition placeholder:text-[#AAAAAA] text-gray-500 lg:h-14 lg:text-lg;
   }
+
+  button[disabled] {
+    @apply opacity-50 pointer-events-none;
+  }
 }
 
 @layer components {
