@@ -15,9 +15,9 @@ const emits = defineEmits<{
       <TheLogo />
       <ul class="flex gap-x-4">
         <li
-          class="cursor-pointer hover:text-gray-400 transition-colors"
           v-for="link in links"
           :key="link"
+          class="cursor-pointer hover:text-gray-400 transition-colors"
         >
           {{ link }}
         </li>
